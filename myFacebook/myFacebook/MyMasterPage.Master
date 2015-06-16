@@ -1,0 +1,115 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MyMasterPage.master.cs" Inherits="myFacebook.MyMasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Facebook</title>
+
+    <link rel="shortcut icon" href="./img/fb.ico" />
+    <link rel="stylesheet" href="css/home/style.css" type="text/css" />
+    <link rel="stylesheet" href="css/home/reset.css" type="text/css" />
+    <link rel="stylesheet" href="css/home/menu.css" type="text/css" />
+    <link rel="stylesheet" href="css/home/nav.css" type="text/css" />
+    <link rel="stylesheet" href="css/home/chatbar.css" type="text/css" />
+    <link rel="stylesheet" href="css/home/main.css" type="text/css" />
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+   
+
+    <link href="css/home/MyOwnStyle.css" rel="stylesheet" />
+     <script type="text/javascript">
+         $(document).ready(function () {
+             $("#notif").click(function () {
+                 alert("worked");
+                 //$("#panelText").toggle('slow');
+             });
+         });
+         sfHover = function () {
+             var sfEls = document.getElementById("nav").getElementsByTagName("LI");
+             for (var i = 0; i < sfEls.length; i++) {
+                 sfEls[i].onmouseover = function () {
+                     this.className += " sfhover";
+                 }
+                 sfEls[i].onmouseout = function () {
+                     this.className = this.className.replace(new RegExp(" sfhover\\b"), "");
+                 }
+             }
+         }
+         if (window.attachEvent) window.attachEvent("onload", sfHover);
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <div id="topBar">
+                <div id="logo">
+                    <a href="home.aspx?HomeButtonClick=1" title="Facebook Home">
+                        <img src="images/fb_img.jpg" style="height:41px;width:41px;" />
+                    </a>
+                </div>
+                <!--end #logo-->
+                <div id="searchBar">
+                     <form method="post" action="search.aspx">
+                        <fieldset>
+                       
+                            <%--<label for="name-text2">Name: </label>--%>
+                            <input type="text" name="q" placeholder="Search for people, places and things" class="font_set" />
+                            <%--<input type="text" id="name-text2" name="q" />--%>
+                            <%--<input type="submit" value="Search" />--%>
+                            <input type="submit" class="searchButton" value="" />
+                        </fieldset>
+                    </form>
+                 
+                </div>
+                <!--end #searchBar-->
+
+                <div id="pageNav">
+                    
+                    <ul class="menu">
+                        <li>
+                            <img src="AppImages/<%:Session["id"]%>.jpg" alt="Alternate Text" style="width:20px;height:25px;" />
+                        </li>
+
+                        <li>
+                            <a href="home.aspx?HomeButtonClick=1" class="lwi">
+                                <span class="lwi"><%:Session["Fname"]%></span>
+                            </a>
+                        </li>
+
+
+<%--                        <li>
+                            <a href="#newsfeed">Home</a>
+                        </li>
+                        <li>
+                            <a href="#findfriends">Find friends</a>
+                        </li>--%>
+                        <li>
+                                <a href="ChangePassword.aspx" type="submit" name="abc" target="_blank">Change Password</a>
+                        </li>
+                         <li>
+                                <a href="notification.aspx" type="submit" name="abc" target="_blank">Notification</a>
+                        </li>
+                        <li>
+                                <a href="login.aspx?logMeOut=1" type="submit" name="logMeOut">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--end #topBar-->
+        </div>
+
+
+    
+    <div>
+         <div id="main">
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">            
+        </asp:ContentPlaceHolder>
+             </div>
+    </div>
+    
+        </div>
+</body>
+</html>
